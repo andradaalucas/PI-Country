@@ -26,3 +26,5 @@ conn.sync({ force: true }).then(() => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });
+
+//force : true / false fuerza o no el reinicio de la base de datos creandolos asi de nuevo
