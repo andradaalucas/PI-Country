@@ -1,3 +1,8 @@
+.textMain{
+    font-family: "Roboto";
+}
+
+
 .loader {
     width: 48px;
     height: 48px;
@@ -20,4 +25,18 @@
     100% {
         transform: rotate(360deg);
     }
-    } 
+    }  
+ .homeTotal{
+    background-color: white;
+ }
+.displayInline{
+    display: inline;
+    font-family: "Roboto";
+    border: none;
+    font-weight: bold;
+}
+.select{
+    border: none;
+    font-family: "Roboto";
+    font-size: 12px;
+}

@@ -4,10 +4,10 @@ import "./LandingPage.css"
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className="bodyLandingPage">
         <h1 className="titleLandingPage">Bienvenidos a mi Landing Page</h1>
         <Link to="/home">
-        <button> Go! </button>
+        <button className="buttonGo"> Go! </button>
 
         </Link>
     </div>

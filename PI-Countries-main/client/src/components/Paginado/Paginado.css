@@ -1,0 +1,18 @@
+.number{
+    display: inline-block;
+    margin-top: 30px;
+}
+.buttonNumber{
+    padding: 5px 15px 5px 15px;
+    margin: 2px;
+    border-radius: 2px;
+    border:1px solid #dcdcdc;
+    background-color: white;
+    font-family: "Roboto";
+}
+
+.buttonNumber:focus{
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+}
