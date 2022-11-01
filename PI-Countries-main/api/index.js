@@ -18,8 +18,7 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { conn, Country, Activity} = require('./src/db.js');
-const axios = require("axios");
+const { conn,} = require('./src/db.js');
 const { loader } = require('./src/controller/index.js');
 
 // Syncing all the models at once.

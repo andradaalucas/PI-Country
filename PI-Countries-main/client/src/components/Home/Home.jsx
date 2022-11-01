@@ -1,9 +1,13 @@
 import React from "react";
-import { useEffect } from "react";
+import { Suspense, lazy ,useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux"
 import { getCountries } from "../../redux/actions";
 import {Link} from "react-router-dom"
-import Card from "../Card/Card";
+// import Card from "../Card/Card";
+import "./Home.css"
+const Card = lazy(()=> import('../Card/Card'))
+
+
 
 function Home() {
   const dispatch = useDispatch()
@@ -40,13 +44,16 @@ function handleClick(e) {
                 <option value="Europe">Europa</option>
                 <option value="Oceania">Oceania</option>
             </select>
+           
            <br />
+           <Suspense fallback={<span class="loader"></span>}>
         {
          allCountries?.map((el) => {
             // <Link to={"/home/" }>
             return(<Card name={el.name} flag={el.flags} continent={el.continents} key={el.id}/>)
             // </Link>
          })}
+          </Suspense>
         </div>
     </div>
   )

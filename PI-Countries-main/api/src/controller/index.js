@@ -14,10 +14,11 @@ const loader = async () => {
           id: el.cca3,
           name: el.name.common,
           continents:el.continents[0],
-          capital: el.capital? el.capital.join(", "): "no tiene capital",
+          capital: el.capital? el.capital.join(", "): "No tiene capital",
           flags: el.flags[0],
-          subregion: el.subregion? el.subregion : "no tiene subregion",
+          subregion: el.subregion? el.subregion : "No tiene subregion",
           area: el.area,
+          maps: el.maps.googleMaps? el.maps.googleMaps : "No esta en google maps ",
           population: el.population,
         }
     })

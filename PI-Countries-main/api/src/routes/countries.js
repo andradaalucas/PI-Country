@@ -4,7 +4,7 @@ const { Op } = require('sequelize');
 const router = Router();
 
 
-//Ruta get por name o traer todos los paises
+//Ruta get por name de country o traer todos los paises
 router.get('/', async (req,res) => {
     const name = req.query.name
     const country = await Country.findAll({include: Activity})
@@ -29,7 +29,7 @@ router.get('/', async (req,res) => {
         res.status(400).send(error);
     }
 });
-//Ruta get por id
+//Ruta get de country por id
 router.get('/:id', async (req,res) => {
     const id = req.params.id.toUpperCase();
     try{
