@@ -2,6 +2,7 @@ import './App.css';
 import {BrowserRouter, Route, Switch } from "react-router-dom" 
 import LandingPage from "./components/LandingPage/LandingPage"
 import Home from './components/Home/Home';
+import Details from "./components/Details/Details"
 
 function App() {
   return (
@@ -9,8 +10,8 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path="/" component={LandingPage}/>
-        <Route path="/home" component={Home}/>
-      <h1>Henry Countries</h1>
+        <Route exact path="/home" component={Home}/>
+        <Route exact path="/Details" component={Details}/>
       </Switch>
     </div>
     </BrowserRouter>

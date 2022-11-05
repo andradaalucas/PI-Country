@@ -1,7 +1,9 @@
 .textMain{
     font-family: "Roboto";
+    display: inline;
+    color: rgb(161, 161, 161);
+    padding-bottom: 20px;
 }
-
 
 .loader {
     width: 48px;
@@ -27,16 +29,80 @@
     }
     }  
  .homeTotal{
-    background-color: white;
+    margin: 0;
  }
 .displayInline{
     display: inline;
     font-family: "Roboto";
     border: none;
-    font-weight: bold;
+    font-weight:500;
+    color: rgb(161, 161, 161);
+}
+.containerFilterOrder{
+    margin-top: 25px;
+    
 }
 .select{
     border: none;
     font-family: "Roboto";
+    border-radius: 4px;
     font-size: 12px;
+    font-weight:600;
+    background-color: rgb(31, 32, 35);
+    border: 1px solid rgb(60, 63, 68);
+    color: rgb(161, 161, 161);
+    cursor: pointer;
+}
+option{
+    cursor: pointer;
+}
+.link{
+    text-decoration: none;
+}
+.navbar{
+    padding-top: 30px;
+}
+
+.flexContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.input{
+    margin-top: 20px;
+    padding: 6px 12px;
+    background: rgb(31, 32, 35);
+    border: 1px solid rgb(60, 63, 68);
+    border-radius: 4px;
+    font-size: 13px;
+    color: rgb(247, 248, 248);
+    height: 35px;
+    width: 580px;
+    appearance: none;
+    transition: border 0.15s ease 0s;}
+
+.input:focus{
+        outline: none;
+        box-shadow: none;
+        border-color: rgb(100, 153, 255);
+    }
+
+.buttonNav {
+        margin-top: 200px;
+        color: #636a6b;
+        padding: 0.7em 1.7em;
+        font-size: 15px;
+        border-radius: 0.5em;
+        background: rgb(31, 32, 35);
+        margin: 20px 3.9% 0px 3.9%;
+        border: 1px solid rgb(60, 63, 68);
+        transition: all .3s;
+        box-shadow: 5px -6px 18px -7px #090909;
+        cursor: pointer;
+
+}
+       
+.buttonNav:active {
+        /* box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444, inset -5px -5px 10px #222; */
+        border-color: rgb(100, 153, 255);
 }

@@ -8,8 +8,9 @@ function Card({name, flag,continent, id }) {
         <img src={flag} alt="imagen no disponible" width="275px" height="175px" />
         <h3 className='nameCountry'>{name}</h3>
         <h5>{continent}</h5>
-        <Link extact to="/countryDetails">
-        <button className='detailsButton'>Detalles</button>
+        <Link to={`/country/${id}`} className="link">
+        <button class="buttonCard">Ver detalles
+        </button>
         </Link>
     </div>
   )

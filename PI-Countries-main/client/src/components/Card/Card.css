@@ -1,7 +1,9 @@
 
 .card{
-    background-color: rgba(255,255,255,255);
-    border:1px solid #dcdcdc;
+    background-color:#222635;
+    /* box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444, inset -5px -5px 10px #222; */
+    /* border:1px solid #1b1f2c; */
+    border: 1px solid #2f3549;
     font-family:Arial;
     width: 30%;
     border-radius: 5px;
@@ -10,32 +12,44 @@
     text-align: center;
     float: left;
     height: calc(100vh/ 2.5);
+    color: rgb(161, 161, 161);
+}
+h3{
+    color: rgb(104, 104, 104);
+    font-size: 20px;
+    margin-bottom: 0;
+}
+h5{
+    margin-top: 5px;
+    font-size: 14px;
 }
 .card:hover{
     transition: 0.4s;
-    transform: scale(1);
-    -webkit-box-shadow: 0px 0px 22px 4px rgba(0,0,0,0.36);
--moz-box-shadow: 0px 0px 22px 4px rgba(0,0,0,0.36);
-box-shadow: 0px 0px 22px 4px rgba(0,0,0,0.36);
+    border: 1px solid #444;
+    /* transform: scale(1); */
+    box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444, inset -5px -5px 10px #222;
+}
+.card:focus-visible{
+    outline-offset: 1px;
 }
 .nameCountry{
     padding: 2px;
 }
 
-.detailsButton {
-	background-color:transparent;
-	border-radius:10px;
-	border:1px solid #dcdcdc;
-	display:inline-block;
-	cursor:pointer;
-	color:#777777;
-	font-family:Arial;
-	font-size:10px;
-	padding:7px 53px;
-	text-decoration:none;
-	text-shadow:0px 0px 50px #ffffff;
+.link{
+    text-decoration: none;
 }
-.detailsButton:hover {
-	background-color:black;
-    color:white;
+.buttonCard {
+    color: #636a6b;
+    padding: 5px 15px;
+    font-size: 15px;
+    border-radius: 0.5em;
+    background: rgb(31, 32, 35);
+    border: 1px solid rgb(60, 63, 68);
+    transition: all .3s;
+    box-shadow: 5px -6px 18px -7px #090909;
+    cursor: pointer;
+}
+.buttonCard:active{
+     border-color: rgb(100, 153, 255);
 }

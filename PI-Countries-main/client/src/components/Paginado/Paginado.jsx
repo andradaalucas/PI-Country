@@ -6,7 +6,7 @@ import "./Paginado.css"
 function Paginado({countriesPerPage, allCountries, paginado}) {
     const pageNumber = []
 
-    for (let i = 1; i < Math.ceil(allCountries/countriesPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(allCountries.length/countriesPerPage); i++) {
         pageNumber.push(i)
     }
   return (

@@ -3,16 +3,20 @@
     margin-top: 30px;
 }
 .buttonNumber{
-    padding: 5px 15px 5px 15px;
     margin: 2px;
-    border-radius: 2px;
-    border:1px solid #dcdcdc;
-    background-color: white;
     font-family: "Roboto";
+    cursor: pointer;
+    color: #636a6b;
+    padding: 5px 15px;
+    font-size: 15px;
+    border-radius: 0.5em;
+    background: rgb(31, 32, 35);
+    border: 1px solid rgb(60, 63, 68);
+    transition: all .3s;
+    box-shadow: 5px -6px 18px -7px #090909;
+    cursor: pointer;
 }
 
 .buttonNumber:focus{
-    background-color: white;
-    border: 1px solid black;
-    color: black;
+    border-color: rgb(100, 153, 255);
 }

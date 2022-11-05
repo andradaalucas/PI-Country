@@ -5,10 +5,9 @@ import "./LandingPage.css"
 const LandingPage = () => {
   return (
     <div className="bodyLandingPage">
-        <h1 className="titleLandingPage">Bienvenidos a mi Landing Page</h1>
+        <h1 className="titleLandingPage">Proyecto Individual </h1>
         <Link to="/home">
         <button className="buttonGo"> Go! </button>
-
         </Link>
     </div>
   )
