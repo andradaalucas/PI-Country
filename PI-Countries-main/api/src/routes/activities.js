@@ -22,19 +22,33 @@ router.post('/', async (req,res) => {
     }
 });
 
+// router.get('/:activityId', async (req,res) => {
+//     try{
+//          const {activityId} = req.params;
+//          const activity = await Activity.findByPk(activityId, {
+//               include: {
+//                    model: Country
+//               }
+//          });
+//          res.send(activity ? activity : []);
+//     }catch(e){
+//          res.send(e);
+//     }
+// });
+
+router.get('/', async (req, res) =>{
+    try{
+        const allActivities = await Activity.findAll({include: {
+            model: Country
+        }})
+        
+        res.send(allActivities)
+    }
+    catch(e){
+        res.send(`Este es el error de get activities por: (${e})`);
+    }
+})
+
 
 module.exports = router;
 
-
-
-/*let arr = [];
-		for (let i = 0; i < countryId.length; i++) {
-			arr[i] = await newActivity.addCountry(countryId[i]);
-		}
-		if (newActivity && arr[0]) {
-			res.json({ message: 'Se vinculo correctamente', data: newActivity });
-		} else {
-			res.json({
-				message: 'ERROR no se pudieron insertar los datos correctamente'
-			});
-		} */

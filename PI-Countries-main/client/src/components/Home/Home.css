@@ -8,7 +8,7 @@
 .loader {
     width: 48px;
     height: 48px;
-    border: 5px solid black;
+    border: 5px solid rgb(247, 248, 248);
     border-bottom-color: transparent;
     border-radius: 50%;
     display: inline-block;
@@ -68,25 +68,6 @@ option{
     justify-content: center;
 }
 
-.input{
-    margin-top: 20px;
-    padding: 6px 12px;
-    background: rgb(31, 32, 35);
-    border: 1px solid rgb(60, 63, 68);
-    border-radius: 4px;
-    font-size: 13px;
-    color: rgb(247, 248, 248);
-    height: 35px;
-    width: 580px;
-    appearance: none;
-    transition: border 0.15s ease 0s;}
-
-.input:focus{
-        outline: none;
-        box-shadow: none;
-        border-color: rgb(100, 153, 255);
-    }
-
 .buttonNav {
         margin-top: 200px;
         color: #636a6b;
@@ -99,9 +80,11 @@ option{
         transition: all .3s;
         box-shadow: 5px -6px 18px -7px #090909;
         cursor: pointer;
+}
+.buttonNav.link{
+    text-decoration: none;
 
 }
-       
 .buttonNav:active {
         /* box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444, inset -5px -5px 10px #222; */
         border-color: rgb(100, 153, 255);

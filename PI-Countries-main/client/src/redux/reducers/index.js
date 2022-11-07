@@ -1,11 +1,10 @@
-import { GET_COUNTRIES, GET_COUNTRIES_BY_CONTINENT, GET_COUNTRY_BY_NAME } from "../actions";
+import { GET_COUNTRIES, GET_COUNTRIES_BY_CONTINENT, ORDER_COUNTRIES_BY_ASCEND_OR_DESCEND, GET_COUNTRY_BY_NAME, GET_COUNTRY_DETAILS } from "../actions";
 
 const initialState = {
     countries : [],
     allCountries : [],
-    continent: [],
     activities: [],
-    countryByName: []
+    countryDetails: {}
 }
 
 
@@ -25,14 +24,40 @@ function rootReducer (state = initialState, action) {
             ...state,
             countries: countriesFiltered
         }
-        // case GET_COUNTRY_BY_NAME:
-        //     const allCountry = state.allCountries
-        //     const countryFiltered = allCountry.filter(el => el.name === action.payload)
-        //     console.log(action.payload)
-        //     return{
-        //         ...state,
-        //     countries : countryFiltered
-        // }
+    
+        case ORDER_COUNTRIES_BY_ASCEND_OR_DESCEND:
+            const orderPayloadAsc = action.payload === "ascen" ?
+            state.countries.sort(function (a,b) {
+                if(a.name > b.name){
+                    return 1
+                }
+                if(a.name < b.name){
+                    return -1
+                }
+                return 0 
+            }):
+            state.countries.sort(function (a,b) {
+                if(a.name > b.name){
+                    return -1
+                }
+                if(a.name < b.name){
+                    return 1
+                }
+            })
+            return{
+                ...state,
+            countries : orderPayloadAsc
+        }
+        case GET_COUNTRY_BY_NAME:
+            return{
+                ...state,
+            countries: action.payload
+        }
+        case GET_COUNTRY_DETAILS:
+            return{
+                ...state,
+            countryDetails: action.payload
+        }
         default:
             return state;
     }

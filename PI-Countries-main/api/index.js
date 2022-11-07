@@ -22,7 +22,7 @@ const { conn,} = require('./src/db.js');
 const { loader } = require('./src/controller/index.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false }).then(async () => {
   loader()
   server.listen(3001, () => {
     console.log('%s listening at 3001')
