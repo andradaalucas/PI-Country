@@ -4,7 +4,8 @@ export const GET_COUNTRIES_BY_CONTINENT = "GET_COUNTRIES_BY_CONTINENT";
 export const GET_COUNTRY_BY_NAME = "GET_COUNTRY_BY_NAME";
 export const ORDER_COUNTRIES_BY_ASCEND_OR_DESCEND = "ORDER_COUNTRIES_BY_ASCEND_OR_DESCEND"
 export const GET_COUNTRY_DETAILS = "GET_COUNTRY_DETAILS"
-
+export const GET_ALL_ACTIVITIES = "GET_ALL_ACTIVITIES"
+export const POST_ACTIVITIES = "POST_ACTIVITIES"
 
 
 export function getCountries(){
@@ -65,4 +66,28 @@ export function getCountryDetails(id){
         console.log("Este es el error de getCountries" + e)
         }
     }
+}
+export function getActivities(){
+    const urlAllActivities = `http://localhost:3001/activities`
+    return async function(dispatch){
+        try{
+            const jsonAllActivities = await axios.get(urlAllActivities)
+            console.log(jsonAllActivities.data)
+            return dispatch({
+                type: GET_ALL_ACTIVITIES,
+                payload: jsonAllActivities.data
+            })
+        }
+        catch(e){
+            console.log(`Este es el error de getActivities ${e}`)
+        }
+    }
+}
+export function postActivities(payload){
+    const urlPostActivities = `http://localhost:3001/activities`
+   return async function(dispatch){
+    const response = await axios.post(urlPostActivities, payload)
+    console.log(response)
+    return response
+   }
 }

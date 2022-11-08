@@ -20,7 +20,7 @@ function Details(props) {
       myCountry?
       <div >
       <Link to="/home">
-        <button>Volver</button>
+        <button className='buttonNav'>Volver</button>
       </Link>
         <h1>{myCountry.name}</h1>
         <img src={myCountry.flags} alt="imagen no disponible" width="275px" height="175px"/>
@@ -29,11 +29,13 @@ function Details(props) {
         <h3>Poblacion: {myCountry.population}</h3>
         <h3>Subregion: {myCountry.subregion}</h3>
         <h3>Area: {myCountry.area}</h3>
-        <h3>Actividades: {myCountry.activities?.map( el =>{
+        <h3 className="activitiesDetail">Actividades: {myCountry.activities?.map( el =>{
           return(
             <div key={el.id}>
-              <p>{el.name}</p>
-              <p>{el.season}</p>
+              <p>Nombre: {el.name}</p>
+              <p>Temporada: {el.season}</p>
+              <p>Dificultad: {el.difficulty}</p>
+              <p>Duracion: {el.duration}</p>
             </div>
             )
         })}</h3>

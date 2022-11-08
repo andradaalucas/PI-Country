@@ -24,11 +24,13 @@ function SearchBar() {
   }
   return (
     <div>
+      <form>
       <input type="text" className='input'
       placeholder='Ingrese un pais'
       onChange={ e => handleInput(e)}
       />
       <button type='submit' className='submitButton' onClick={e => handleSubmit(e)}>Buscar</button>
+      </form>
     </div>
   )
 }

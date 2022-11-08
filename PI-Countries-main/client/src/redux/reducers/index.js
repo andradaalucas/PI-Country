@@ -1,9 +1,16 @@
-import { GET_COUNTRIES, GET_COUNTRIES_BY_CONTINENT, ORDER_COUNTRIES_BY_ASCEND_OR_DESCEND, GET_COUNTRY_BY_NAME, GET_COUNTRY_DETAILS } from "../actions";
+import { GET_COUNTRIES, 
+         GET_COUNTRIES_BY_CONTINENT, 
+         ORDER_COUNTRIES_BY_ASCEND_OR_DESCEND,
+         GET_COUNTRY_BY_NAME,
+         GET_COUNTRY_DETAILS,
+         POST_ACTIVITIES, 
+         GET_ALL_ACTIVITIES} from "../actions";
 
 const initialState = {
     countries : [],
     allCountries : [],
     activities: [],
+    orderCountries: [],
     countryDetails: {}
 }
 
@@ -46,7 +53,7 @@ function rootReducer (state = initialState, action) {
             })
             return{
                 ...state,
-            countries : orderPayloadAsc
+                orderCountries : orderPayloadAsc
         }
         case GET_COUNTRY_BY_NAME:
             return{
@@ -58,6 +65,15 @@ function rootReducer (state = initialState, action) {
                 ...state,
             countryDetails: action.payload
         }
+        case POST_ACTIVITIES:
+            return{
+                ...state
+            }
+        case GET_ALL_ACTIVITIES:
+            return{
+                ...state,
+            activities: action.payload
+            }
         default:
             return state;
     }

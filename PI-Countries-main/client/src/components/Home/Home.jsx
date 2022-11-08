@@ -1,7 +1,7 @@
 import React from "react";
 import { Suspense, lazy ,useEffect, useState } from "react";
 import {useDispatch, useSelector} from "react-redux"
-import { getCountries, getCountriesByContintent,orderCountriesByAscendOrDescend } from "../../redux/actions";
+import { getCountries, getCountriesByContintent,orderCountriesByAscendOrDescend, getActivities } from "../../redux/actions";
 import {Link} from "react-router-dom"
 import Paginado from "../Paginado/Paginado";
 import SearchBar from "../SearchBar/SearchBar";
@@ -19,7 +19,8 @@ function Home() {
   const indexOfLastCountry =  currentPage * countriesPerPage
   const indexOfFirstCountry =  indexOfLastCountry - countriesPerPage
   const currentCountry = allCountries.slice(indexOfFirstCountry,indexOfLastCountry)
-
+  const allActivities = useSelector((state)=> state.activities)
+  console.log(allActivities.map(el => el.name))
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber)
@@ -29,6 +30,9 @@ function Home() {
   useEffect(()=>{
     dispatch(getCountries())
   },[dispatch])
+  useEffect(()=>{
+    dispatch(getActivities())
+  }, [dispatch])
   
 function handleFiltered (e){
   dispatch(getCountriesByContintent(e.target.value))
@@ -83,9 +87,16 @@ function handleSort(e){
             </select>
             <p  className="displayInline"> Filtrar por actividades: </p>
             <select className="select">
-                <option value="">Creado en base de datos</option>
+                        {allActivities.map(el => {
+                              return <option key={el.id} value={el.id}>{el.name}</option>
+                         })} 
             </select>
           </div>
+             <Paginado
+             countriesPerPage={countriesPerPage}
+             allCountries={allCountries}
+             paginado={paginado}
+             />
         </div>
         <div>
           <br />
@@ -101,11 +112,6 @@ function handleSort(e){
           })}
           </Suspense>
 
-          <Paginado
-          countriesPerPage={countriesPerPage}
-          allCountries={allCountries}
-          paginado={paginado}
-          />
         </div>
     </div>
   )

@@ -13,7 +13,7 @@ function Card({name, flag,continent, id }) {
         <img src={flag} alt="imagen no disponible" width="275px" height="175px" />
         <h3 className='nameCountry'>{name}</h3>
         <h5>{continent}</h5>
-        <Link to={`/Details/${id}`} className="link">
+        <Link to={`/details/${id}`} className="link">
         <button className="buttonCard">Ver detalles
         </button>
         </Link>
