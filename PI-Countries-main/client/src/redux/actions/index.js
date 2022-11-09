@@ -6,8 +6,12 @@ export const ORDER_COUNTRIES_BY_ASCEND_OR_DESCEND = "ORDER_COUNTRIES_BY_ASCEND_O
 export const GET_COUNTRY_DETAILS = "GET_COUNTRY_DETAILS"
 export const GET_ALL_ACTIVITIES = "GET_ALL_ACTIVITIES"
 export const POST_ACTIVITIES = "POST_ACTIVITIES"
+export const ORDER_COUNTRIES_BY_MAJOR_OR_MINOR = "ORDER_COUNTRIES_BY_MAJOR_OR_MINOR"
+export const FILTER_BY_ACTIVITIES = "FILTER_BY_ACTIVITIES"
 
 
+
+//Paises
 export function getCountries(){
     const urlCountries = "http://localhost:3001/countries"
     return async function(dispatch){
@@ -67,12 +71,20 @@ export function getCountryDetails(id){
         }
     }
 }
+export function orderCountriesByMajorOrMinor(payload){
+    return {
+        type: ORDER_COUNTRIES_BY_MAJOR_OR_MINOR,
+        payload
+    }
+
+}
+
+// Actividades
 export function getActivities(){
     const urlAllActivities = `http://localhost:3001/activities`
     return async function(dispatch){
         try{
             const jsonAllActivities = await axios.get(urlAllActivities)
-            console.log(jsonAllActivities.data)
             return dispatch({
                 type: GET_ALL_ACTIVITIES,
                 payload: jsonAllActivities.data
@@ -84,10 +96,16 @@ export function getActivities(){
     }
 }
 export function postActivities(payload){
+    console.log(payload) 
     const urlPostActivities = `http://localhost:3001/activities`
-   return async function(dispatch){
+   return async function(){
     const response = await axios.post(urlPostActivities, payload)
-    console.log(response)
     return response
    }
+}
+export function filterByActivities(payload){
+    return {
+        type: FILTER_BY_ACTIVITIES, 
+        payload
+    }
 }

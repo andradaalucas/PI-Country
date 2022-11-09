@@ -1,11 +1,17 @@
 import React from "react";
 import { Suspense, lazy ,useEffect, useState } from "react";
 import {useDispatch, useSelector} from "react-redux"
-import { getCountries, getCountriesByContintent,orderCountriesByAscendOrDescend, getActivities } from "../../redux/actions";
+import { getCountries,
+  getCountriesByContintent,
+  orderCountriesByAscendOrDescend,
+  getActivities,
+  orderCountriesByMajorOrMinor,
+  filterByActivities } from "../../redux/actions";
 import {Link} from "react-router-dom"
 import Paginado from "../Paginado/Paginado";
 import SearchBar from "../SearchBar/SearchBar";
 import "./Home.css"
+import {ascen, descend, major, minor} from "../../redux/reducers"
 const Card = lazy(()=> import('../Card/Card'))
 
 
@@ -14,19 +20,17 @@ function Home() {
   const dispatch = useDispatch()
   const allCountries = useSelector((state) => state.countries)
   const [currentPage, setCurrentPage] = useState(1)
-  const [ setOrder] = useState("")
+  const [, setOrder] = useState("")
   const [countriesPerPage] = useState(9)
   const indexOfLastCountry =  currentPage * countriesPerPage
   const indexOfFirstCountry =  indexOfLastCountry - countriesPerPage
   const currentCountry = allCountries.slice(indexOfFirstCountry,indexOfLastCountry)
   const allActivities = useSelector((state)=> state.activities)
-  console.log(allActivities.map(el => el.name))
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber)
   }
 
-  
   useEffect(()=>{
     dispatch(getCountries())
   },[dispatch])
@@ -34,21 +38,38 @@ function Home() {
     dispatch(getActivities())
   }, [dispatch])
   
-function handleFiltered (e){
-  dispatch(getCountriesByContintent(e.target.value))
-}
+// function handleFiltered (e){
+//   dispatch(getCountriesByContintent(e.target.value))
+// }
 function handleClick(e) {
     e.preventDefault()
     dispatch(getCountries())
 }
-
-function handleSort(e){
+function handleMajorOrMinor(e){
   e.preventDefault()
-  dispatch(orderCountriesByAscendOrDescend(e.target.value))
+  dispatch(orderCountriesByMajorOrMinor(e.target.value))
   setCurrentPage(1)
-  setOrder(`Ordenado ${e.target.value}`)
+  setOrder(e.target.value)
 }
 
+function handleSort(e){
+  e.preventDefault();
+  dispatch(orderCountriesByAscendOrDescend(e.target.value))
+  setCurrentPage(1)
+  setOrder(e.target.value)
+}
+// function handleActivities(e){
+//   e.preventDefault();
+//   dispatch(filterByActivities(e.target.value))
+// }
+const arr = ["Africa", "South America", "North America", "Asia", "Oceania","Antarctica", "Europe", "all"]
+function handleChange(e){
+  if(arr.includes(e.target.value)){
+    dispatch(getCountriesByContintent(e.target.value))
+  } else{
+    dispatch(filterByActivities(e.target.value))
+  }
+} 
 
 
   return (
@@ -69,15 +90,23 @@ function handleSort(e){
                 <button className="buttonNav" onClick={e=>{handleClick(e)}}>Reaload</button>
           </div>
           <div className="containerFilterOrder">
-          <p className="displayInline">  Ordenar por: </p>
+            <p className="displayInline"> Ordenar por poblacion: </p>
+            <select className="select" onChange={handleMajorOrMinor}>
+              <option>Selecciona</option>
+              <option value={major}> Mayor poblacion</option>
+              <option value={minor}> Menor poblacion</option>
+            </select>
+          <p className="displayInline">  Ordenar de A-Z: </p>
             <select className="select" onChange={e => handleSort(e)}>
-                <option className="option" value="ascen">ascendent </option>
-                <option value="descen">descendent</option>
+                <option>Selecciona</option>
+                <option className="option" value={ascen}>ascendent </option>
+                <option value={descend}>descendent</option>
             </select>
               <p className="displayInline">  Filtrar por continente: </p>
-            <select className="select" onChange={e => handleFiltered(e)}>
-                <option value="all">todos los continentes </option>
+            <select className="select" onChange={handleChange}>
+                <option value="all" >Selecciona</option>
                 <option value="Africa">africa</option>
+                <option value="all">todos</option>
                 <option value="South America">america del sur</option>
                 <option value="North America">america del norte</option>
                 <option value="Antarctica">antartida</option>
@@ -86,12 +115,13 @@ function handleSort(e){
                 <option value="Oceania">oceania</option>
             </select>
             <p  className="displayInline"> Filtrar por actividades: </p>
-            <select className="select">
+            <select className="select"  onChange={handleChange}>
+                       <option value="allActivities">Selecciona</option>
                         {allActivities.map(el => {
-                              return <option key={el.id} value={el.id}>{el.name}</option>
+                              return <option key={el.id} value={el.name}>{el.name}</option>
                          })} 
             </select>
-          </div>
+            </div>
              <Paginado
              countriesPerPage={countriesPerPage}
              allCountries={allCountries}

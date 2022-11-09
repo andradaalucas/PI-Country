@@ -6,7 +6,6 @@ import {getCountryDetails} from "../../redux/actions"
 
 
 function Details(props) {
-  console.log(props)
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(getCountryDetails(props.match.params.id))

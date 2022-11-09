@@ -4,7 +4,9 @@ import { GET_COUNTRIES,
          GET_COUNTRY_BY_NAME,
          GET_COUNTRY_DETAILS,
          POST_ACTIVITIES, 
-         GET_ALL_ACTIVITIES} from "../actions";
+         GET_ALL_ACTIVITIES,
+         ORDER_COUNTRIES_BY_MAJOR_OR_MINOR,
+         FILTER_BY_ACTIVITIES} from "../actions";
 
 const initialState = {
     countries : [],
@@ -13,11 +15,16 @@ const initialState = {
     orderCountries: [],
     countryDetails: {}
 }
+export const ascen = "ascen"
+export const descend = "descend"
+export const major = "major"
+export const minor = "minor"
 
 
 function rootReducer (state = initialState, action) {
     switch (action.type) {
         case GET_COUNTRIES:
+           
         return{
             ...state,
             countries: action.payload,
@@ -25,35 +32,27 @@ function rootReducer (state = initialState, action) {
         }
         case GET_COUNTRIES_BY_CONTINENT:
             const allCountries = state.allCountries
-            console.log(allCountries)
             const countriesFiltered = action.payload === "all" ? allCountries : allCountries.filter( el => el.continents === action.payload)
             return{
             ...state,
             countries: countriesFiltered
         }
-    
         case ORDER_COUNTRIES_BY_ASCEND_OR_DESCEND:
-            const orderPayloadAsc = action.payload === "ascen" ?
-            state.countries.sort(function (a,b) {
-                if(a.name > b.name){
-                    return 1
-                }
-                if(a.name < b.name){
-                    return -1
-                }
+            let name = state.allCountries
+            let orderPayloadAsc = action.payload === ascen ?
+                name.sort( (a,b) => {
+                if(a.name.toLowerCase() > b.name.toLowerCase())return 1
+                if(a.name.toLowerCase() < b.name.toLowerCase())return -1
                 return 0 
-            }):
-            state.countries.sort(function (a,b) {
-                if(a.name > b.name){
-                    return -1
-                }
-                if(a.name < b.name){
-                    return 1
-                }
+            }):name.sort( (a,b) => {
+                if(a.name.toLowerCase() > b.name.toLowerCase())return -1
+                if(a.name.toLowerCase() < b.name.toLowerCase())return 1
+                
+                return 0
             })
             return{
                 ...state,
-                orderCountries : orderPayloadAsc
+                countries : orderPayloadAsc
         }
         case GET_COUNTRY_BY_NAME:
             return{
@@ -68,12 +67,38 @@ function rootReducer (state = initialState, action) {
         case POST_ACTIVITIES:
             return{
                 ...state
-            }
+        }
         case GET_ALL_ACTIVITIES:
             return{
                 ...state,
             activities: action.payload
+        }
+        case ORDER_COUNTRIES_BY_MAJOR_OR_MINOR: {
+            const majorOrMinor = state.countries
+            const payloadOrder = action.payload === major ?
+            majorOrMinor.sort((a,b) => {
+                if(a.population < b.population) return 1
+                if(a.population > b.population) return -1
+                return 0
+            }): majorOrMinor.sort((a,b) => {
+                if(a.population < b.population) return -1
+                if(a.population > b.population) return 1
+                return 0
+            })
+            return {
+                ...state,
+                countries: payloadOrder
             }
+        }
+        case FILTER_BY_ACTIVITIES: 
+        const allActivities = state.activities
+        const allCountriesActivities = state.allCountries
+        const activitiesFiltered = action.payload === "allActivities" ? allCountriesActivities : allActivities.filter( el => el.name === action.payload)
+        return {
+            ...state,
+            countries : activitiesFiltered[0].countries ||  allCountriesActivities
+        }
+
         default:
             return state;
     }

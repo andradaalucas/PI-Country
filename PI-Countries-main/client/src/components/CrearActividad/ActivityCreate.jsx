@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {useSelector} from "react-redux"
 import {useDispatch} from "react-redux"
 import "./ActivityCreate.css"
@@ -38,8 +38,8 @@ function handleCountry(e){
 
 function handleSubmit(e){
   e.preventDefault()
-  // dispatch(postActivities(activity))
-  console.log(activity)
+  dispatch(postActivities(activity))
+  alert(`Añadiste la ${activity.name} en ${activity.nameCountry}🤩`)
 }
 
 function validar(data){
@@ -60,33 +60,34 @@ function validarName(name){
         <button className='buttonNav'>Volver</button>
       </Link>
       <form className='form' onSubmit={handleSubmit}>
+        <div className='container'>
           {
             errorForm.name? <p><small>{errorForm.name}</small></p>: false
           }
-        <div className="inputName" >
-        <label className="inputName" >Nombre</label>
-          <input  className="inputName"required name="name" value={activity.name}onChange={handleChange} type="text" placeholder='activity name'/>
-        </div>
+       
+        <label className="label" >Nombre</label>
+          <input  className="inputName"required name="name" value={activity.name}onChange={handleChange} type="text" placeholder='Nombre de la actividad'/>
+        
           {
-            errorForm.season? <p><small>{errorForm.season}</small></p>: false
+            errorForm.name && errorForm.season? <p><small>{errorForm.season}</small></p>: false
           }
-        <label>Temporada</label>
+        <label className="label" >Temporada</label>
             <select  required value={activity.season} onChange={handleChange} name="season" className="select">
               <option value="">Elige una temporada</option>
-              <option value="winter">Invierno</option>
-              <option value="spring">Primavera</option>
-              <option value="summer">Verano</option>
-              <option value="autumm">Otono</option>
+              <option value="winter">Invierno 🥶</option>
+              <option value="spring">Primavera 🌷</option>
+              <option value="summer">Verano 🥵</option>
+              <option value="autumm">Otoño 🍂</option>
             </select>
             {
-            errorForm.duration? <p><small>{errorForm.duration}</small></p>: false
+           errorForm.season && errorForm.duration? <p><small>{errorForm.duration}</small></p>: false
           }
-      <label>Duracion</label>
+       <label className="label">Duracion</label>
           <input value={activity.duration} onChange={handleChange}type="time" name="duration" />
           {
-            errorForm.difficulty? <p><small>{errorForm.difficulty}</small></p>: false
+            errorForm.season && errorForm.difficulty? <p><small>{errorForm.difficulty}</small></p>: false
           }    
-      <label>Dificultad</label>
+      <label className="label">Dificultad</label>
             <select required value={activity.difficulty} onChange={handleChange} name="difficulty" className="select">
               <option value="">Elige una dificultad</option>
               <option value="1">1</option>
@@ -95,17 +96,18 @@ function validarName(name){
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-      <label>Pais</label>
           {
             errorForm.nameCountry? <p><small>{errorForm.nameCountry}</small></p>: false
           }
+      <label className="label">Pais</label>
             <select required className="select" name="nameCountry" onChange={handleCountry}>
                         <option value="seleccionaPais">Selecciona un pais</option>
                         {countries.map(el => {
                               return <option key={el.id} value={el.name}>{el.name}</option>
                          })} 
             </select>
-      <button type='submit'>Crear Actividad</button>
+      <button className="btnCreate"type='submit' >Crear Actividad</button>
+        </div>
       </form>
     </div>
   )

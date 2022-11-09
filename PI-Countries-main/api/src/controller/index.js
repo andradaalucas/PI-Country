@@ -12,7 +12,7 @@ const loader = async () => {
       const apiCountries = apiCountriesResponse.data?.map((el) => {
           return {
           id: el.cca3,
-          name: el.name.common,
+          name: el.translations.spa.common,
           continents:el.continents[0],
           capital: el.capital? el.capital.join(", "): "No tiene capital",
           flags: el.flags[0],

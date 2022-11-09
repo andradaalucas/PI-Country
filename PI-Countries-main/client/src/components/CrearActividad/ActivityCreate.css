@@ -5,3 +5,96 @@
     border-radius: 5px;
     padding: 200px 200px;
 }
+.container{
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+.select{
+    display: inline;
+}
+.inputName{
+    display: inline;
+    padding: 5px 50px;
+}
+.label{
+    display: block;
+    font-size: 20px;
+}
+
+.btnCreate {
+    margin-top: 15px;
+    padding: 0.9em 1.6em;
+    border: 1px solid #2f3549;
+    outline: none;
+    color: rgb(161, 161, 161);
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 17px;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    background-color:#222635;
+    border-radius: 12px;
+   }
+   
+   .btnCreate::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #222635;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+   }
+   /* glow */
+   .btnCreate::before {
+    content: "";
+    background: linear-gradient(
+       45deg,
+       rgba(127,8,245,1), #002BFF , #00d4ff,
+        #002BFF, rgba(127,8,245,1), #00d4ff
+   );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 600%;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+    opacity: 0;
+   }
+   
+   @keyframes glowing {
+    0% {
+     background-position: 0 0;
+    }
+   
+    50% {
+     background-position: 400% 0;
+    }
+   
+    100% {
+     background-position: 0 0;
+    }
+   }
+   
+   /* hover */
+   .btnCreate:hover::before {
+    opacity: 1;
+   }
+   
+   .btnCreate:active:after {
+    background: transparent;
+   }
+   
+   .btnCreate:active {
+    color: #000;
+    font-weight: bold;
+   }
