@@ -5,7 +5,6 @@ import Home from './components/Home/Home';
 import Details from "./components/Details/Details"
 import ActivityCreate from "./components/CrearActividad/ActivityCreate"
 
-
 function App() {
   return (
     <BrowserRouter>

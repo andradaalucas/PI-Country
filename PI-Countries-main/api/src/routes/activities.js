@@ -9,11 +9,6 @@ const router = Router();
 router.post('/', async (req,res) => {
     const {nameCountry, name, difficulty, duration, season} = req.body;
     try{  
-
-        // const search = await Activity.findOne({ where: name})
-        // if(search === null){
-        //     return name
-        // } else{
         const search = await Activity.findOne({where:
             {name: name}})
         if(!search){
@@ -26,7 +21,7 @@ router.post('/', async (req,res) => {
             await newActivity.addCountry(countryDb)
             return res.send(`message: la actividad   ${ name }   se creo exitosamente`);
         }else{
-            return res.send(`message: la actividad   ${ name }  ya se existe`)
+            return res.send(`message: la actividad   ${ name }  ya existe`)
         } 
     }catch(error){
          return res.send("La actividad no se pudo crear por " + error);

@@ -10,24 +10,26 @@ function Details(props) {
   useEffect(()=>{
     dispatch(getCountryDetails(props.match.params.id))
   },[dispatch])
-  
+    
   const myCountry = useSelector((state) => state.countryDetails)
 
+
+  
   return (
     <div>
       {
-      myCountry?
+      myCountry ?
       <div >
       <Link to="/home">
         <button className='buttonNav'>Volver</button>
       </Link>
         <h1>{myCountry.name}</h1>
         <img src={myCountry.flags} alt="imagen no disponible" width="275px" height="175px"/>
-        <h2>capital: {myCountry.capital}</h2>
-        <p>id: {myCountry.id}</p>
+        <h3>capital: {myCountry.capital}</h3>
+        <h3>id: {myCountry.id}</h3>
         <h3>Poblacion: {myCountry.population}</h3>
         <h3>Subregion: {myCountry.subregion}</h3>
-        <h3>Area: {myCountry.area}</h3>
+        <h3>Area: {myCountry.area}  km2</h3>
         <h3 className="activitiesDetail">Actividades: {myCountry.activities?.map( el =>{
           return(
             <div key={el.id}>

@@ -14,15 +14,16 @@ export const FILTER_BY_ACTIVITIES = "FILTER_BY_ACTIVITIES"
 //Paises
 export function getCountries(){
     const urlCountries = "http://localhost:3001/countries"
-    return async function(dispatch){
+    return  function(dispatch){
         try{
-            const jsonCountries = await axios.get(urlCountries)
-            return dispatch(
-                {
-                type : GET_COUNTRIES,
-                payload: jsonCountries.data
-            }
-            )
+            axios.get(urlCountries).then(el =>
+                 dispatch(
+                    {
+                        type : GET_COUNTRIES,
+                        payload: el.data
+                    }
+                )
+          )
         }
         catch(e){
             console.log("Este es el error de getCountries" + e)

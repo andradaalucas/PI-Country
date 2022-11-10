@@ -16,6 +16,12 @@
 .inputName{
     display: inline;
     padding: 5px 50px;
+    background-color:rgb(31, 32, 35);
+    border: 1px solid #2f3549;
+}
+.selectTime{
+    background-color:rgb(31, 32, 35);
+    border: 1px solid #2f3549;
 }
 .label{
     display: block;

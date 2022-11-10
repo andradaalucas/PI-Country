@@ -42,5 +42,9 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull:true,
     },
+    currencies: {
+      type: DataTypes.STRING,
+      allowNull:true,
+    }
   }, {timestamps: false});
 };

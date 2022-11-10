@@ -23,6 +23,7 @@ function ActivityCreate() {
     nameCountry:[]
   })
 function handleChange(e){
+  //Seteo activity con una copía de lo que haya anteriormente y modifico el e.target.name (que va a ir variando) por el e.target.value
   setActivity({
     ...activity,
     [e.target.name]: e.target.value
@@ -39,7 +40,7 @@ function handleCountry(e){
 function handleSubmit(e){
   e.preventDefault()
   dispatch(postActivities(activity))
-  alert(`Añadiste la ${activity.name} en ${activity.nameCountry}🤩`)
+  alert(`Añadiste la actividad ${activity.name} en ${activity.nameCountry}🤩`)
 }
 
 function validar(data){
@@ -83,7 +84,7 @@ function validarName(name){
            errorForm.season && errorForm.duration? <p><small>{errorForm.duration}</small></p>: false
           }
        <label className="label">Duracion</label>
-          <input value={activity.duration} onChange={handleChange}type="time" name="duration" />
+          <input className="selectTime" value={activity.duration} onChange={handleChange}type="time" name="duration" />
           {
             errorForm.season && errorForm.difficulty? <p><small>{errorForm.difficulty}</small></p>: false
           }    

@@ -39,7 +39,7 @@ function rootReducer (state = initialState, action) {
         }
         case ORDER_COUNTRIES_BY_ASCEND_OR_DESCEND:
             let name = state.allCountries
-            let orderPayloadAsc = action.payload === ascen ?
+            let orderPayload = action.payload === ascen ?
                 name.sort( (a,b) => {
                 if(a.name.toLowerCase() > b.name.toLowerCase())return 1
                 if(a.name.toLowerCase() < b.name.toLowerCase())return -1
@@ -52,7 +52,7 @@ function rootReducer (state = initialState, action) {
             })
             return{
                 ...state,
-                countries : orderPayloadAsc
+                countries : orderPayload
         }
         case GET_COUNTRY_BY_NAME:
             return{
@@ -60,6 +60,7 @@ function rootReducer (state = initialState, action) {
             countries: action.payload
         }
         case GET_COUNTRY_DETAILS:
+            console.log(action.payload)
             return{
                 ...state,
             countryDetails: action.payload

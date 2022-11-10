@@ -33,10 +33,8 @@ function Home() {
 
   useEffect(()=>{
     dispatch(getCountries())
-  },[dispatch])
-  useEffect(()=>{
     dispatch(getActivities())
-  }, [dispatch])
+  },[dispatch])
   
 // function handleFiltered (e){
 //   dispatch(getCountriesByContintent(e.target.value))
@@ -51,7 +49,6 @@ function handleMajorOrMinor(e){
   setCurrentPage(1)
   setOrder(e.target.value)
 }
-
 function handleSort(e){
   e.preventDefault();
   dispatch(orderCountriesByAscendOrDescend(e.target.value))
