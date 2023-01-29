@@ -9,7 +9,13 @@ const loader = async () => {
       include: Activity
     });
     if(!allCountries.length){
-    
+    const funcion = (objeto) =>{
+      for(props in objeto){
+        return objeto[props].name
+      }
+    }
+
+
     const apiCountriesResponse = await axios.get('https://restcountries.com/v3/all');
     const apiCountries = apiCountriesResponse.data?.map((el) => {
           return {
@@ -22,12 +28,11 @@ const loader = async () => {
           area: el.area,
           maps: el.maps.googleMaps? el.maps.googleMaps : "No esta en google maps ",
           population: el.population,
-        }
-         
-
+          currencies :  funcion(el.currencies) ? funcion(el.currencies) : "No tiene moneda"
+        } 
     })
     await Country.bulkCreate(apiCountries);
-      console.log("Se guardo la info con exito")
+      console.log(apiCountries)
     }
 }
 module.exports = ({
