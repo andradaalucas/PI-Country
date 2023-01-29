@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./LandingPage.css"
+import "./LandingPage.css";
 
 const LandingPage = () => {
   return (
     <div className="bodyLandingPage">
-        <h1 className="titleLandingPage">Proyecto Individual </h1>
-        <Link to="/home">
+      <h1 className="titleLandingPage">Proyecto Individual </h1>
+      <Link to="/home">
         <button className="btn">Empezar</button>
-        </Link>
+      </Link>
     </div>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;
